@@ -9,9 +9,17 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+const mongoose = require('mongoose');
+mongoose.set("strictQuery", false);
+const mongoDB = "mongodb+srv://apm526:admin@cluster0.fnkjkm5.mongodb.net/?retryWrites=true&w=majority";
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
